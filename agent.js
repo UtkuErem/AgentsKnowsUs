@@ -67,12 +67,13 @@ function Agent(agentId) {
         }
 
         var closest = [];
-        closest[0] = fruit[0];
-        shortestDistance = distSquared(currentPosition, fruit[0]);
-        this.fruitDistance = shortestDistance;
+        // closest[0] = fruit[0];
+        shortestDistance = Number.MAX_SAFE_INTEGER;
+        // shortestDistance = distSquared(currentPosition, fruit[0]);
+        // this.fruitDistance = shortestDistance;
         for (i = 0; i < fruit.length; i++) {
             var d = distSquared(currentPosition, fruit[i]);
-            if (fruit[i].eater && fruit[i].eater !== this.id) {
+            if (fruit[i].eater !== undefined && fruit[i].eater && fruit[i].eater !== this.id) {
                 if (d < agentArray[fruit[i].eater].fruitDistance) {
                     fruit[i].eater = undefined;
                 } else
@@ -85,7 +86,10 @@ function Agent(agentId) {
                 this.fruitDistance = d;
             }
         }
-        closest[0].eater = this.id;
+        if (closest[0]) {
+            closest[0].eater = this.id;
+            console.log("Agent" + this.id + "Fruit" + closest[1] + "-" + closest[0].x + ":" + closest[0].y);
+        }
         return closest;
     }
 
@@ -99,6 +103,10 @@ function Agent(agentId) {
     }
 
     this.moveToClosest = function (closest) {
+        if (closest === undefined || !closest) {
+            this.changeDirection('No Action');
+            return;
+        }
         if (this.x < closest.x) {
             this.changeDirection('Right');
         }
@@ -111,6 +119,7 @@ function Agent(agentId) {
         if (this.y < closest.y) {
             this.changeDirection('Down');
         }
-    }
 
+
+    }
 }
