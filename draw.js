@@ -15,7 +15,7 @@ var agentArray = [];
     var isGameOver = false;
 
     //Creating foods
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 90; i++) {
         //Creating green fruits
         fruit.push(new Fruit());
         fruit[i].pickLocation();
