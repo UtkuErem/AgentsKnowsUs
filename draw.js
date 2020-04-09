@@ -39,7 +39,16 @@ var agentArray = [];
             }
             for (let i = 0; i < agentArray.length; i++) {
                 agentArray[i].update();
-                agentArray[i].draw();
+                if (agentArray[i] === agentArray[0]) {
+                    agentArray[i].draw("orange");
+                }
+                if (agentArray[i] === agentArray[1]) {
+                    agentArray[i].draw("blue");
+                }
+                if (agentArray[i] === agentArray[2]) {
+                    agentArray[i].draw("gray");
+                }
+
                 var closest = agentArray[i].findClosest(fruit, agentArray);
                 if (!closest || !closest[0]) {
                     agentArray[i].moveToClosest();

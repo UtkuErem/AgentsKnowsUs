@@ -7,8 +7,9 @@ function Agent(agentId) {
     this.id = agentId;
     this.fruitDistance = 0;
 
-    this.draw = function () {
-        ctx.fillStyle = "#FFFFFF";
+    this.draw = function (color) {
+        // ctx.fillStyle = "#FFFFFF";
+        ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, scale, scale);
     }
     this.update = function () {
